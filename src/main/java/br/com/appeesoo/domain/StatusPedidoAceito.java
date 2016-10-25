@@ -3,8 +3,6 @@
  */
 package br.com.appeesoo.domain;
 
-import javax.resource.spi.IllegalStateException;
-
 /**
  * @author Delano
  *
@@ -16,9 +14,8 @@ public class StatusPedidoAceito implements Status {
 		try {
 			throw new IllegalStateException();
 		} catch (Exception e) {
-
+			
 		}
-
 	}
 
 	@Override
@@ -26,16 +23,17 @@ public class StatusPedidoAceito implements Status {
 		try {
 			pedido.setStatus(new StatusPedidoPago());
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
+
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * br.com.appeesoo.domain.Status#atualizarStatus(br.com.appeesoo.domain.
-	 * Pedido)
-	 */
+	@Override
+	public void cancelarPedido(Pedido pedido) {
+		try {
+			pedido.setStatus(new StatusPedidoCancelado());
+		} catch (Exception e) {
+		}
+
+	}
 
 }

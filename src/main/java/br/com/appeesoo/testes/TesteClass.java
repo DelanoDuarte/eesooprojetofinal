@@ -18,13 +18,19 @@ public class TesteClass {
 
 		Pedido pedido = new Pedido();
 
-		pedido.aceitarPedido(pedido);
+		System.out.println("Estado Inicial: " + pedido.getStatus().toString());
 
-		System.out.println(pedido.getStatus().toString());
+		pedido.aceitarPedido();
+		System.out.println("Aceitar Novo Pedido: " + pedido.getStatus().toString());
 
-		pedido.aceitarPagamentoPedido(pedido);
+		pedido.cancelarPedido();
+		System.out.println("Cancelando Pedido Aceito: " + pedido.getStatus().toString());
 
-		System.out.println(pedido.getStatus().toString());
+		pedido.aceitarPedido();
+		System.out.println("Tentando Aceitar um Pedido ja Cancelado: " + pedido.getStatus().toString());
+
+		pedido.aceitarPagamentoPedido();
+		System.out.println("Tentando Aceitar Pagamaneto de Pedido Cancelado: " + pedido.getStatus().toString());
 	}
 
 }

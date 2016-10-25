@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -54,6 +55,7 @@ public class Pedido implements Serializable {
 	@NotNull
 	private Produto produto;
 
+	@Transient
 	private Status status = new StatusNovoPedido();
 
 	public Pedido() {
@@ -66,6 +68,18 @@ public class Pedido implements Serializable {
 		this.dataPedido = dataPedido;
 		this.produto = produto;
 		this.status = status;
+	}
+
+	public void aceitarPedido() {
+		status.aceitarPedido(this);
+	}
+
+	public void aceitarPagamentoPedido() {
+		status.aceitarPagamentoPedido(this);
+	}
+
+	public void cancelarPedido() {
+		status.cancelarPedido(this);
 	}
 
 	public Long getId() {
@@ -106,14 +120,6 @@ public class Pedido implements Serializable {
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	public void aceitarPedido(Pedido pedido) {
-		status.aceitarPedido(pedido);
-	}
-
-	public void aceitarPagamentoPedido(Pedido pedido) {
-		status.aceitarPagamentoPedido(pedido);
 	}
 
 	@Override
