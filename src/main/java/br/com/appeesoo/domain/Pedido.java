@@ -8,6 +8,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +19,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -55,15 +56,16 @@ public class Pedido implements Serializable {
 	@NotNull
 	private Produto produto;
 
-	@Transient
-	private Status status = new StatusNovoPedido();
+	@Enumerated(EnumType.STRING)
+	private StatusEnum status = StatusEnum.Novo;
 
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(Cliente cliente, Date dataPedido, Produto produto, Status status) {
+	public Pedido(Long id, Cliente cliente, Date dataPedido, Produto produto, StatusEnum status) {
 		super();
+		this.id = id;
 		this.cliente = cliente;
 		this.dataPedido = dataPedido;
 		this.produto = produto;
@@ -114,11 +116,11 @@ public class Pedido implements Serializable {
 		this.produto = produto;
 	}
 
-	public Status getStatus() {
+	public StatusEnum getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(StatusEnum status) {
 		this.status = status;
 	}
 
@@ -163,10 +165,7 @@ public class Pedido implements Serializable {
 				return false;
 		} else if (!produto.equals(other.produto))
 			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
+		if (status != other.status)
 			return false;
 		return true;
 	}

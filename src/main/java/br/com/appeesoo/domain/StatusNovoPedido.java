@@ -15,7 +15,7 @@ public class StatusNovoPedido implements Status {
 	public void aceitarPedido(Pedido pedido) {
 
 		try {
-			pedido.setStatus(new StatusPedidoAceito());
+			pedido.setStatus(StatusEnum.Aceito);
 		} catch (Exception e) {
 
 		}

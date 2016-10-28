@@ -9,12 +9,18 @@
 	<ui:define name="content">
 
 		<h:form>
-			<p:panel header="Testes">
-				<p:outputLabel value="Teste" />
-				<br />
-			</p:panel>
+			<b:dataTable value="#{clienteBean.clientes}" var="_cliente">
+				<b:dataTableColumn value="#{_cliente.nome}" label="Nome" />
+				<b:dataTableColumn value="#{_cliente.cpf}" label="CPF" />
+				<b:dataTableColumn value="#{_cliente.cidade}" label="Cidade" />
+				<b:dataTableColumn value="#{_cliente.estado}" label="Estado" />
+			</b:dataTable>
+			<br />
 
+			<b:commandButton value="Novo Cliente" action="/paginas/cliente/novo"
+				look="primary" />
 		</h:form>
 
 	</ui:define>
+
 </ui:composition>

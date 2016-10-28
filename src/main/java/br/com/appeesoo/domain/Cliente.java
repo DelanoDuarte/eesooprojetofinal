@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  * @author Delano
@@ -36,6 +37,7 @@ public class Cliente implements Serializable {
 	private String nome;
 
 	@Column(name = "cpf_cliente")
+	@Size(min = 11, max = 11, message = "CPF Invalido")
 	private String cpf;
 
 	@Column(name = "cidade_cliente")

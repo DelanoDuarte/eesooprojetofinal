@@ -14,14 +14,14 @@ public class StatusPedidoAceito implements Status {
 		try {
 			throw new IllegalStateException();
 		} catch (Exception e) {
-			
+
 		}
 	}
 
 	@Override
 	public void aceitarPagamentoPedido(Pedido pedido) {
 		try {
-			pedido.setStatus(new StatusPedidoPago());
+			pedido.setStatus(StatusEnum.Pago);
 		} catch (Exception e) {
 		}
 
@@ -30,7 +30,7 @@ public class StatusPedidoAceito implements Status {
 	@Override
 	public void cancelarPedido(Pedido pedido) {
 		try {
-			pedido.setStatus(new StatusPedidoCancelado());
+			pedido.setStatus(StatusEnum.Cancelado);
 		} catch (Exception e) {
 		}
 

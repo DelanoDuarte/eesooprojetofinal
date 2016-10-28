@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<b:navBar brand="Sistema" brandHref="" inverse="true" fixed="top">
+		<b:navbarLinks>
+			<b:navLink value="Inicio" outcome="/paginas/index" />
+			<b:navLink value="Cliente" outcome="/paginas/cliente/lista" />
+
+		</b:navbarLinks>
+		<h:form styleClass="navbar-form navbar-right">
+			<b:commandButton action="a" value="Sign in" look="success"
+				icon="chevron-right" iconAlign="right" />
+		</h:form>
+	</b:navBar>
+
+</h:body>
+</html>
