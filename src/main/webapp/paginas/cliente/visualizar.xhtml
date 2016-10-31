@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="clienteId" value="#{clienteBean.cliente.id}" />
+			<f:event listener="#{clienteBean.buscarClientePorId()}"
+				type="preRenderView" />
+		</f:metadata>
+
+
+		<h:form>
+
+			<p:messages />
+
+			<p:panel header="Visualizando Cliente">
+
+				<b:panelGrid colSpans="2,10" size="xs">
+
+					<h:outputLabel value="Nome:" for="nomeCliente" />
+					<p:outputLabel id="nomeCliente" value="#{clienteBean.cliente.nome}" />
+
+					<h:outputLabel value="CPF:" for="cpfCliente" />
+					<p:outputLabel id="cpfCliente" value="#{clienteBean.cliente.cpf}" />
+
+					<h:outputLabel value="Cidade:" for="cidadeCliente" />
+					<p:outputLabel id="cidadeCliente"
+						value="#{clienteBean.cliente.cidade}" />
+
+					<h:outputLabel value="Estado:" for="estadoCliente" />
+					<p:outputLabel id="estadoCliente"
+						value="#{clienteBean.cliente.estado}" />
+
+				</b:panelGrid>
+
+				<div align="center">
+
+					<b:button icon="pencil" icon-size="1x"
+						outcome="/paginas/cliente/novo" value="Editar">
+						<f:param name="clienteId" value="#{clienteBean.cliente.id}" />
+					</b:button>
+				</div>
+			</p:panel>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

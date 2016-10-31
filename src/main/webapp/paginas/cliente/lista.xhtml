@@ -14,6 +14,12 @@
 				<b:dataTableColumn value="#{_cliente.cpf}" label="CPF" />
 				<b:dataTableColumn value="#{_cliente.cidade}" label="Cidade" />
 				<b:dataTableColumn value="#{_cliente.estado}" label="Estado" />
+				<b:dataTableColumn label="" orderable="false">
+					<b:button icon="pencil" icon-size="1x"
+						outcome="/paginas/cliente/visualizar" value="">
+						<f:param name="clienteId" value="#{_cliente.id}" />
+					</b:button>
+				</b:dataTableColumn>
 			</b:dataTable>
 			<br />
 
