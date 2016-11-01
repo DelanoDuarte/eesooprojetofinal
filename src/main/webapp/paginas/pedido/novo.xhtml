@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form>
+			<p:panel header="Novo Pedido">
+
+				<h:outputLabel value="Cliente:" for="clientePedido" />
+				<b:selectOneMenu id="clientePedido"
+					value="#{pedidoBean.pedido.cliente}">
+					<f:selectItems value="#{clienteBean.clientes}" var="_cliente"
+						itemLabel="#{_cliente.nome}"
+						noSelectionOption="Selecione o Cliente" />
+					<f:converter converterId="genericEntityConverter" />
+				</b:selectOneMenu>
+
+				<h:outputLabel value="Data do Pedido: " for="dataPedido" />
+				<b:datepicker id="dataPedido" mode="popup-icon"
+					value="#{pedidoBean.pedido.dataPedido}" />
+
+				<br />
+
+				<h:outputLabel value="Quantidade" />
+				<b:inputText type="number" value="#{pedidoBean.pedido.quantidade}">
+					<f:convertNumber integerOnly="true" />
+				</b:inputText>
+
+				<h:outputLabel value="Produtos: " />
+				<p:selectManyMenu value="#{pedidoBean.pedido.produto}">
+					<f:selectItems value="#{produtoBean.produtos}" var="_produto"
+						itemLabel="#{_produto.nome}" itemValue="#{_produto}" />
+					<f:converter converterId="genericEntityConverter" />
+				</p:selectManyMenu>
+
+				<br />
+				<p:commandButton action="#{pedidoBean.salvarPedido()}"
+					value="Salvar" />
+			</p:panel>
+
+
+			<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true"
+				height="500" width="500">
+
+
+				<br />
+				<p:commandButton value="Add" action="#{pedidoBean.salvarPedido()}" />
+			</p:dialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

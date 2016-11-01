@@ -8,20 +8,23 @@
 
 	<ui:define name="content">
 		<h:form>
-			<b:dataTable value="#{produtoBean.produtos}" var="_produto">
-				<b:dataTableColumn value="#{_produto.nome}" label="Nome" />
-				<b:dataTableColumn value="R$ #{_produto.preco}" label="Preço" />
-				<b:dataTableColumn label="" orderable="false">
-					<b:button icon="pencil" icon-size="1x" value=""
-						outcome="/paginas/produto/visualizar">
-						<f:param name="produtoId" value="#{_produto.id}" />
+			<b:dataTable value="#{pedidoBean.pedidos}" var="_pedido">
+				<b:dataTableColumn value="#{_pedido.cliente.nome}" label="Cliente"/>
+				<b:dataTableColumn value="#{_pedido.dataPedido}" label="Data do Pedido"/>
+				<b:dataTableColumn value="#{_pedido.status}" label="Status"/>
+				<b:dataTableColumn orderable="false" label="">
+					<b:button icon="" outcome="/paginas/pedido/visualizar">
+						<f:param name="pedidoId" value="#{_pedido.id}" />
 					</b:button>
+
 				</b:dataTableColumn>
 			</b:dataTable>
 
-			<b:commandButton value="Novo Produto" action="/paginas/produto/novo"
-				look="primary" />
+			<b:button value="Novo Pedido" look="primary"
+				outcome="/paginas/pedido/novo" />
 		</h:form>
+
+
 	</ui:define>
 
 </ui:composition>

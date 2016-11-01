@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="pedidoId" value="#{pedidoBean.pedido.id}" />
+			<f:event listener="#{pedidoBean.buscarPedidoPorId()}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h:form>
+			<p:panel header="Visualizando Pedido">
+				<b:panelGrid colSpans="2,10" size="xs">
+					<h:outputLabel value="Cliente:" for="nomeCliente" />
+					<b:inputText id="nomeCliente" span="8" readonly="true"
+						value="#{pedidoBean.pedido.cliente.nome}" />
+
+					<h:outputLabel value="Data do Pedido:" for="dataPedido" />
+					<b:inputText id="dataPedido" span="8" readonly="true"
+						value="#{pedidoBean.pedido.dataPedido}" />
+
+					<h:outputLabel value="Status:" for="statusPedido" />
+					<b:inputText id="statusPedido" span="8" readonly="true"
+						value="#{pedidoBean.pedido.status}" />
+				</b:panelGrid>
+			</p:panel>
+
+		</h:form>
+
+		<h:form>
+
+			<p:dataTable value="#{pedidoBean.pedido.produto}" var="_produto">
+				<p:column>
+					<f:facet name="header">Produto</f:facet>
+					<h:outputLabel value="#{_produto.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Quantidade</f:facet>
+					<h:outputLabel value="#{pedidoBean.pedido.quantidade}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Preço</f:facet>
+					<h:outputLabel value="R$ #{_produto.preco}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

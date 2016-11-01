@@ -1,6 +1,7 @@
 package br.com.appeesoo.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -18,15 +19,19 @@ public class PedidoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Pedido pedido = new Pedido();
-
 	private List<Pedido> pedidos;
 
 	@Inject
 	private IPedidoRepository repository;
 
+	public PedidoBean() {
+		pedido.setDataPedido(new Date());
+	}
+
 	public String salvarPedido() {
+
 		repository.salvarPedido(pedido);
-		return "";
+		return "/paginas/pedido/lista";
 	}
 
 	public void buscarPedidoPorId() {

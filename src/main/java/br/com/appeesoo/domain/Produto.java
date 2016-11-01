@@ -34,10 +34,6 @@ public class Produto implements Serializable {
 	@NotNull
 	private Long id;
 
-	@Column(name = "quantidade_produto")
-	@NotNull
-	private Integer quantidade;
-
 	@Column(name = "nome_produto")
 	@NotNull
 	private String nome;
@@ -50,9 +46,8 @@ public class Produto implements Serializable {
 		super();
 	}
 
-	public Produto(Integer quantidade, String nome, double preco) {
+	public Produto(String nome, double preco) {
 		super();
-		this.quantidade = quantidade;
 		this.nome = nome;
 		this.preco = preco;
 	}
@@ -63,14 +58,6 @@ public class Produto implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
 	}
 
 	public String getNome() {
@@ -98,7 +85,6 @@ public class Produto implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(preco);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
 		return result;
 	}
 
@@ -108,7 +94,7 @@ public class Produto implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Produto))
+		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
 		if (id == null) {
@@ -123,17 +109,12 @@ public class Produto implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(preco) != Double.doubleToLongBits(other.preco))
 			return false;
-		if (quantidade == null) {
-			if (other.quantidade != null)
-				return false;
-		} else if (!quantidade.equals(other.quantidade))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", quantidade=" + quantidade + ", nome=" + nome + ", preco=" + preco + "]";
+		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + "]";
 	}
 
 }

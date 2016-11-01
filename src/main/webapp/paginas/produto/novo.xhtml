@@ -31,14 +31,6 @@
 					</f:facet>
 				</b:inputText>
 
-				<b:inputText value="#{produtoBean.produto.quantidade}" type="number">
-					<f:convertNumber integerOnly="true" />
-					<f:facet name="prepend">
-						<h:outputText value="Quantidade: " />
-					</f:facet>
-				</b:inputText>
-
-
 				<div align="center">
 					<b:commandButton value="Salvar" look="success"
 						action="#{produtoBean.salvarProduto()}" />

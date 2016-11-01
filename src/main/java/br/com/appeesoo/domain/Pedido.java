@@ -5,15 +5,19 @@ package br.com.appeesoo.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -51,26 +55,16 @@ public class Pedido implements Serializable {
 	@NotNull
 	private Date dataPedido;
 
-	@ManyToOne
-	@JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_produtos_pedido", joinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido"), inverseJoinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id_produto"))
 	@NotNull
-	private Produto produto;
+	private List<Produto> produto;
+
+	@Column(name = "quantidade_pedido")
+	private Integer quantidade;
 
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status = StatusEnum.Novo;
-
-	public Pedido() {
-		super();
-	}
-
-	public Pedido(Long id, Cliente cliente, Date dataPedido, Produto produto, StatusEnum status) {
-		super();
-		this.id = id;
-		this.cliente = cliente;
-		this.dataPedido = dataPedido;
-		this.produto = produto;
-		this.status = status;
-	}
 
 	public void aceitarPedido() {
 		status.aceitarPedido(this);
@@ -82,6 +76,19 @@ public class Pedido implements Serializable {
 
 	public void cancelarPedido() {
 		status.cancelarPedido(this);
+	}
+
+	public Pedido() {
+		super();
+	}
+
+	public Pedido(Cliente cliente, Date dataPedido, List<Produto> produto, Integer quantidade, StatusEnum status) {
+		super();
+		this.cliente = cliente;
+		this.dataPedido = dataPedido;
+		this.produto = produto;
+		this.quantidade = quantidade;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -108,12 +115,20 @@ public class Pedido implements Serializable {
 		this.dataPedido = dataPedido;
 	}
 
-	public Produto getProduto() {
+	public List<Produto> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
+	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public StatusEnum getStatus() {
@@ -132,6 +147,7 @@ public class Pedido implements Serializable {
 		result = prime * result + ((dataPedido == null) ? 0 : dataPedido.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
+		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -142,7 +158,7 @@ public class Pedido implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Pedido))
+		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
 		if (cliente == null) {
@@ -165,6 +181,11 @@ public class Pedido implements Serializable {
 				return false;
 		} else if (!produto.equals(other.produto))
 			return false;
+		if (quantidade == null) {
+			if (other.quantidade != null)
+				return false;
+		} else if (!quantidade.equals(other.quantidade))
+			return false;
 		if (status != other.status)
 			return false;
 		return true;
@@ -173,7 +194,7 @@ public class Pedido implements Serializable {
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", cliente=" + cliente + ", dataPedido=" + dataPedido + ", produto=" + produto
-				+ ", status=" + status + "]";
+				+ ", quantidade=" + quantidade + ", status=" + status + "]";
 	}
 
 }

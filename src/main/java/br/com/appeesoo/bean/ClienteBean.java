@@ -33,7 +33,7 @@ public class ClienteBean implements Serializable {
 
 	public String salvarCliente() {
 		clienteRepository.salvarCliente(cliente);
-		return "";
+		return "/paginas/cliente/lista";
 	}
 
 	public void buscarClientePorId() {

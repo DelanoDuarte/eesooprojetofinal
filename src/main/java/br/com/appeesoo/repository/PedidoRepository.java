@@ -8,6 +8,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import br.com.appeesoo.domain.Pedido;
 
@@ -30,6 +31,7 @@ public class PedidoRepository implements IPedidoRepository {
 	private EntityManager entityManager;
 
 	@Override
+	@Transactional
 	public void salvarPedido(Pedido pedido) {
 		try {
 			if (pedido.getId() == null) {
@@ -68,6 +70,7 @@ public class PedidoRepository implements IPedidoRepository {
 	 * Long)
 	 */
 	@Override
+	@Transactional
 	public void excluirPedido(Long id) {
 		try {
 			Pedido pedido = buscarPedidoPorId(id);
@@ -88,9 +91,8 @@ public class PedidoRepository implements IPedidoRepository {
 		try {
 			return entityManager.createQuery("from Pedido p").getResultList();
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		return null;
 	}
-
 }
