@@ -36,6 +36,11 @@ public class ClienteBean implements Serializable {
 		return "/paginas/cliente/lista";
 	}
 
+	public String excluirCliente() {
+		clienteRepository.excluirCliente(this.cliente.getId());
+		return "/paginas/cliente/lista";
+	}
+
 	public void buscarClientePorId() {
 		this.cliente = clienteRepository.buscarClientePorId(this.cliente.getId());
 	}

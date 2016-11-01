@@ -15,8 +15,9 @@
 				<b:dataTableColumn value="#{_cliente.cidade}" label="Cidade" />
 				<b:dataTableColumn value="#{_cliente.estado}" label="Estado" />
 				<b:dataTableColumn label="" orderable="false">
-					<b:button icon="pencil" icon-size="1x"
-						outcome="/paginas/cliente/visualizar" value="">
+					<b:button icon="search" icon-size="1x"
+						outcome="/paginas/cliente/visualizar" value=""
+						tooltip="Visualizar Cliente" look="success">
 						<f:param name="clienteId" value="#{_cliente.id}" />
 					</b:button>
 				</b:dataTableColumn>
@@ -24,7 +25,7 @@
 			<br />
 
 			<b:commandButton value="Novo Cliente" action="/paginas/cliente/novo"
-				look="primary" />
+				look="primary" icon="plus" />
 		</h:form>
 
 	</ui:define>

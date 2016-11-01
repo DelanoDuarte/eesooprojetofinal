@@ -21,30 +21,36 @@
 
 			<p:panel header="Visualizando Cliente">
 
-				<b:panelGrid colSpans="2,10" size="xs">
 
+				<b:panelGrid colSpans="2,10" size="xs">
 					<h:outputLabel value="Nome:" for="nomeCliente" />
-					<p:outputLabel id="nomeCliente" value="#{clienteBean.cliente.nome}" />
+					<b:inputText id="nomeCliente" span="8" readonly="true"
+						value="#{clienteBean.cliente.nome}" />
 
 					<h:outputLabel value="CPF:" for="cpfCliente" />
-					<p:outputLabel id="cpfCliente" value="#{clienteBean.cliente.cpf}" />
+					<b:inputText id="cpfCliente" span="8" readonly="true"
+						value="#{clienteBean.cliente.cpf}" />
 
 					<h:outputLabel value="Cidade:" for="cidadeCliente" />
-					<p:outputLabel id="cidadeCliente"
+					<b:inputText id="cidadeCliente" span="8" readonly="true"
 						value="#{clienteBean.cliente.cidade}" />
 
 					<h:outputLabel value="Estado:" for="estadoCliente" />
-					<p:outputLabel id="estadoCliente"
+					<b:inputText id="estadoCliente" span="8" readonly="true"
 						value="#{clienteBean.cliente.estado}" />
-
 				</b:panelGrid>
+
 
 				<div align="center">
 
 					<b:button icon="pencil" icon-size="1x"
-						outcome="/paginas/cliente/novo" value="Editar">
+						outcome="/paginas/cliente/novo" value="Editar" look="primary">
 						<f:param name="clienteId" value="#{clienteBean.cliente.id}" />
 					</b:button>
+
+					<b:commandButton value="Excluir"
+						action="#{clienteBean.excluirCliente()}" look="danger"
+						icon="trash" />
 				</div>
 			</p:panel>
 		</h:form>

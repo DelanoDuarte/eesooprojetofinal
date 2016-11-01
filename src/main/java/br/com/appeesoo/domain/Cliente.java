@@ -37,7 +37,7 @@ public class Cliente implements Serializable {
 	private String nome;
 
 	@Column(name = "cpf_cliente")
-	@Size(min = 11, max = 11, message = "CPF Invalido")
+	@Size(min = 14, max = 18, message = "CPF Invalido")
 	private String cpf;
 
 	@Column(name = "cidade_cliente")

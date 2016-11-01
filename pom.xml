@@ -53,6 +53,11 @@
     	<artifactId>bootsfaces</artifactId>
     	<version>0.9.1</version>
     </dependency>
+    <dependency>
+    	<groupId>org.webjars</groupId>
+    	<artifactId>jquery-maskedinput</artifactId>
+    	<version>1.4.0</version>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
