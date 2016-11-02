@@ -35,7 +35,7 @@ public class StatusNovoPedido implements Status {
 	@Override
 	public void cancelarPedido(Pedido pedido) {
 		try {
-			throw new IllegalStateException();
+			pedido.setStatus(StatusEnum.Cancelado);
 		} catch (Exception e) {
 
 		}

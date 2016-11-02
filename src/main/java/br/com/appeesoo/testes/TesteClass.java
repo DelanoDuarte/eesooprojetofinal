@@ -32,7 +32,7 @@ public class TesteClass {
 		// pedido.getStatus().toString());
 
 		pedido.aceitarPagamentoPedido();
-		System.out.println("Tentando Aceitar Pagamaneto de Pedido Cancelado: " + pedido.getStatus().toString());
+		System.out.println("Aceitando Pagamaneto de Pedido : " + pedido.getStatus().toString());
 
 		pedido.cancelarPedido();
 		System.out.println("Tentando Cancelar Pedido ja pago : " + pedido.getStatus().toString());
