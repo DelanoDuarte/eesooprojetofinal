@@ -15,6 +15,9 @@
 		</f:metadata>
 
 		<h:form>
+
+			<p:messages />
+
 			<p:panel header="Visualizando Pedido">
 				<b:panelGrid colSpans="2,10" size="xs">
 					<h:outputLabel value="Cliente:" for="nomeCliente" />
@@ -29,6 +32,28 @@
 					<b:inputText id="statusPedido" span="8" readonly="true"
 						value="#{pedidoBean.pedido.status}" />
 				</b:panelGrid>
+
+				<div align="center">
+
+					<b:button icon="pencil" icon-size="1x" value="Editar"
+						outcome="/paginas/pedido/novo" look="primary">
+						<f:param value="#{pedidoBean.pedido.id}" name="pedidoId" />
+					</b:button>
+
+					<b:dropButton value="Ações" look="warning">
+						<b:commandButton value="Aceitar Pedido"
+							action="#{pedidoBean.aceitarPedido()}" look="primary">
+						</b:commandButton>
+
+						<b:commandButton value="Aceitar Pagamento"
+							action="#{pedidoBean.aceitarPagamentoPedido()}" look="primary">
+						</b:commandButton>
+
+						<b:commandButton value="Cancelar Pedido"
+							action="#{pedidoBean.cancelarPedido()}" look="primary">
+						</b:commandButton>
+					</b:dropButton>
+				</div>
 			</p:panel>
 
 		</h:form>

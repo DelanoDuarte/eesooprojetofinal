@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.com.appeesoo.domain.Produto;
@@ -31,13 +33,19 @@ public class ProdutoBean implements Serializable {
 	@Inject
 	private IProdutoRepository repository;
 
+	@Inject
+	private FacesContext context;
+
 	public String salvarProduto() {
 		repository.salvarProduto(produto);
+		context.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Novo Produto Registrado com Sucesso !", null));
 		return "/paginas/produto/lista";
 	}
 
 	public String excluirProduto() {
 		repository.excluirProduto(this.produto.getId());
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Deletado com Sucesso !", null));
 		return "/paginas/produto/lista";
 	}
 

@@ -7,6 +7,13 @@
 	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="pedidoId" value="#{pedidoBean.pedido.id}" />
+			<f:event listener="#{pedidoBean.buscarPedidoPorId()}"
+				type="preRenderView" />
+		</f:metadata>
+
 		<h:form>
 			<p:panel header="Novo Pedido">
 

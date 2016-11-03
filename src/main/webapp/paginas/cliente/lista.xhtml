@@ -9,6 +9,8 @@
 	<ui:define name="content">
 
 		<h:form>
+			<p:messages />
+
 			<b:dataTable value="#{clienteBean.clientes}" var="_cliente">
 				<b:dataTableColumn value="#{_cliente.nome}" label="Nome" />
 				<b:dataTableColumn value="#{_cliente.cpf}" label="CPF" />

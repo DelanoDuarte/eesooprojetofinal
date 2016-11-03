@@ -9,6 +9,7 @@ import javax.resource.spi.IllegalStateException;
  * @author Delano
  *
  */
+
 public class StatusNovoPedido implements Status {
 
 	@Override

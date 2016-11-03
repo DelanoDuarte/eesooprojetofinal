@@ -8,12 +8,16 @@
 
 	<ui:define name="content">
 		<h:form>
+			<p:messages />
+			
 			<b:dataTable value="#{pedidoBean.pedidos}" var="_pedido">
-				<b:dataTableColumn value="#{_pedido.cliente.nome}" label="Cliente"/>
-				<b:dataTableColumn value="#{_pedido.dataPedido}" label="Data do Pedido"/>
-				<b:dataTableColumn value="#{_pedido.status}" label="Status"/>
+				<b:dataTableColumn value="#{_pedido.cliente.nome}" label="Cliente" />
+				<b:dataTableColumn value="#{_pedido.dataPedido}"
+					label="Data do Pedido" />
+				<b:dataTableColumn value="#{_pedido.status}" label="Status" />
 				<b:dataTableColumn orderable="false" label="">
-					<b:button icon="" outcome="/paginas/pedido/visualizar">
+					<b:button icon="search" icon-size="1x"
+						outcome="/paginas/pedido/visualizar" look="success">
 						<f:param name="pedidoId" value="#{_pedido.id}" />
 					</b:button>
 

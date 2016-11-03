@@ -8,6 +8,8 @@
 
 	<ui:define name="content">
 		<h:form>
+			<p:messages />
+
 			<b:dataTable value="#{produtoBean.produtos}" var="_produto">
 				<b:dataTableColumn value="#{_produto.nome}" label="Nome" />
 				<b:dataTableColumn value="R$ #{_produto.preco}" label="Preço" />

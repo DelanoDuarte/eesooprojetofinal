@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.com.appeesoo.domain.Cliente;
@@ -27,17 +29,23 @@ public class ClienteBean implements Serializable {
 	@Inject
 	private IClienteRepository clienteRepository;
 
+	@Inject
+	private FacesContext context;
+
 	private Cliente cliente = new Cliente();
 
 	private List<Cliente> clientes;
 
 	public String salvarCliente() {
 		clienteRepository.salvarCliente(cliente);
+		context.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Novo Cliente Registrado com Sucesso !", null));
 		return "/paginas/cliente/lista";
 	}
 
 	public String excluirCliente() {
 		clienteRepository.excluirCliente(this.cliente.getId());
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Deletado com Sucesso !", null));
 		return "/paginas/cliente/lista";
 	}
 
